@@ -1,0 +1,22 @@
+services:
+  endless-sky-mmo-server:
+    image: python:3.12-slim
+    container_name: endless-sky-mmo-server
+    working_dir: /app
+    command: ["python", "server.py"]
+    ports:
+      - "8080:8080"
+    environment:
+      ES_MMO_HOST: "0.0.0.0"
+      ES_MMO_PORT: "8080"
+      ES_MMO_DB: "/data/multiplayer.db"
+      ES_MMO_TOKEN_TTL: "604800"
+      # Set in your shell before launching compose.
+      ES_MMO_SECRET: "${ES_MMO_SECRET:-change-me}"
+    volumes:
+      - ./multiplayer:/app
+      - mmo_data:/data
+    restart: unless-stopped
+
+volumes:
+  mmo_data:
