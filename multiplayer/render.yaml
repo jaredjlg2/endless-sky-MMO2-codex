@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: endless-sky-mmo-server
+    runtime: python
+    rootDir: multiplayer
+    buildCommand: "echo 'No build step required'"
+    startCommand: "python server.py"
+    healthCheckPath: /healthz
+    envVars:
+      - key: ES_MMO_HOST
+        value: 0.0.0.0
+      - key: ES_MMO_TOKEN_TTL
+        value: 604800
+      - key: ES_MMO_SECRET
+        generateValue: true
+      - key: ES_MMO_DB
+        value: /var/data/multiplayer.db
+    disk:
+      name: endless-sky-mmo-data
+      mountPath: /var/data
+      sizeGB: 1
