@@ -23,7 +23,7 @@ from typing import Any
 
 DB_PATH = os.environ.get("ES_MMO_DB", "multiplayer.db")
 HOST = os.environ.get("ES_MMO_HOST", "0.0.0.0")
-PORT = int(os.environ.get("PORT", os.environ.get("ES_MMO_PORT", "8080")))
+PORT = int(os.environ.get("ES_MMO_PORT", "8080"))
 TOKEN_TTL_SECONDS = int(os.environ.get("ES_MMO_TOKEN_TTL", "604800"))  # 7 days
 SECRET = os.environ.get("ES_MMO_SECRET") or secrets.token_urlsafe(32)
 
